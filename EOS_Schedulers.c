@@ -535,7 +535,7 @@ void add_to_output()
     quick_ordenate_id(ordered_finished, 0, next_file_proc);
 
     file = fopen("output.txt", "a");
-    fprintf(file, "ROUND ROBIN\n");
+    fprintf(file, "\nROUND ROBIN\n");
     fprintf(file, "  PROC   AT   BT   CT");
     fprintf(file, "\n--------------------------\n");
     for (int i = 0; i < num_proc; i++)
