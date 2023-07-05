@@ -5,6 +5,8 @@
 #define MAX_AUX 50
 #define MAXIMUM_INT 2147483646
 
+typedef void (*pointerVoid)(void);
+
 typedef struct
 {
     int id;
@@ -337,13 +339,14 @@ void addBufferAgain()
 }
 
 // FUNCTION OF ROUND-ROBIN SCHEDULER
-void rr_scheduler(int quantum)
+void rr_scheduler()
 {
     printf("\n ROUND-ROBIN SCHEDULER\n\n");
     print_system();
 
     int i;
     int j = start;
+    int quantum = 3;
     int shortestReady; // Variable to lay in the shortest ready time of all process on buffer
 
     // num_proc is a variable that is increased as soon as a process finishes
@@ -535,7 +538,7 @@ void add_to_output()
     quick_ordenate_id(ordered_finished, 0, next_file_proc);
 
     file = fopen("output.txt", "a");
-    fprintf(file, "\nROUND ROBIN\n");
+    fprintf(file, "\n\nROUND ROBIN\n");
     fprintf(file, "  PROC   AT   BT   CT");
     fprintf(file, "\n--------------------------\n");
     for (int i = 0; i < num_proc; i++)
@@ -645,21 +648,24 @@ void print_ordered()
 // MAIN FUNCTION
 int main()
 {
+    pointerVoid foo;
+    foo = srtn_scheduler;
 
     prepare_auxBuffer();
     print_auxBuffer();
     addProcesses();
     print_processes();
-    srtn_scheduler();
+    foo();
     create_output();
     print_ordered();
 
-    int quantum = 3;
+    
+    foo = rr_scheduler;
     prepare_auxBuffer();
     print_auxBuffer();
     addProcesses();
     print_processes();
-    rr_scheduler(quantum);
+    foo();
     add_to_output();
     print_ordered();
 
