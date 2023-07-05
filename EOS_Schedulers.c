@@ -649,8 +649,8 @@ void print_ordered()
 int main()
 {
     pointerVoid foo;
-    foo = srtn_scheduler;
 
+    foo = srtn_scheduler;
     prepare_auxBuffer();
     print_auxBuffer();
     addProcesses();
