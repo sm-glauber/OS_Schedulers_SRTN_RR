@@ -5,8 +5,6 @@
 #define MAX_AUX 50
 #define MAXIMUM_INT 2147483646
 
-typedef void (*pointerVoid)(void);
-
 typedef struct
 {
     int id;
@@ -25,11 +23,11 @@ Process empty;
 
 FILE *file;
 
-int start = 0, end = 0;
-int proc_id = 1;
-int num_proc = 0;
-int clock_tick = 0;
-int next_file_proc = 0;
+int start, end;
+int proc_id;
+int num_proc;
+int clock_tick;
+int next_file_proc;
 int max_file_itens;
 
 // FUNCTION TO RESET ALL VARIABLE TO USE AGAIN
@@ -114,6 +112,7 @@ void quick_arrival(Process vector[], int left, int right)
 // FUNCTION TO COPY THE PROCESSES OF "input.txt" TO THE AUXILIAR BUFFER
 void prepare_auxBuffer()
 {
+
     // Openning the file
     file = fopen("input.txt", "r");
     int arrival_time_f, burst_time_f, priority_f;
@@ -645,24 +644,19 @@ void print_ordered()
 // MAIN FUNCTION
 int main()
 {
-    pointerVoid foo;
-
-    foo = srtn_scheduler;
     prepare_auxBuffer();
     print_auxBuffer();
     addProcesses();
     print_processes();
-    foo();
+    srtn_scheduler();
     create_output();
     print_ordered();
 
-    
-    foo = rr_scheduler;
     prepare_auxBuffer();
     print_auxBuffer();
     addProcesses();
     print_processes();
-    foo();
+    rr_scheduler();
     add_to_output();
     print_ordered();
 
