@@ -114,10 +114,7 @@ void quick_arrival(Process vector[], int left, int right)
 // FUNCTION TO COPY THE PROCESSES OF "input.txt" TO THE AUXILIAR BUFFER
 void prepare_auxBuffer()
 {
-    // Creating the file
-    create_input();
-
-    // Ooenning the file
+    // Openning the file
     file = fopen("input.txt", "r");
     int arrival_time_f, burst_time_f, priority_f;
     Process aux;
